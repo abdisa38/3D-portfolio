@@ -70,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Inner circle */}
           <span className="relative z-10 w-full h-full rounded-full bg-bg flex items-center justify-center">
             <span className="font-display italic text-[13px] text-text-primary tracking-tight">
-              JA
+              AA
             </span>
           </span>
         </button>

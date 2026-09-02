@@ -8,7 +8,7 @@ interface HeroSectionProps {
   isReady: boolean;
 }
 
-const ROLES = ['Creative', 'Fullstack', 'Founder', 'Scholar'];
+const ROLES = ['Full-Stack', 'AI Engineer', 'System Architect', 'Tech Leader'];
 const HLS_STREAM_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
@@ -134,7 +134,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           id="hero-eyebrow"
           className="blur-in text-[10px] sm:text-xs text-muted uppercase tracking-[0.4em] mb-8 md:mb-10 font-mono font-medium block"
         >
-          COLLECTION &apos;26
+          PORTFOLIO &apos;26
         </span>
 
         {/* Name */}
@@ -142,7 +142,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           id="hero-name"
           className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.85] tracking-tight text-white mb-6 md:mb-8 selection:bg-white/10"
         >
-          Michael Smith
+          Abdisa Awel
         </h1>
 
         {/* Role line */}
@@ -155,11 +155,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               {ROLES[roleIndex]}
             </span>
-            <span>lives in Chicago.</span>
+            <span>based in Addis Ababa.</span>
           </p>
 
           <p className="text-sm text-muted max-w-sm sm:max-w-md mx-auto leading-relaxed">
-            Designing seamless digital interactions by focusing on the unique nuances which bring systems to life.
+            Senior-oriented Full-Stack & AI Systems Engineer architecting robust enterprise backends, scalable web architectures, and autonomous AI-driven applications.
           </p>
         </div>
 

@@ -12,16 +12,11 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   if (!isOpen) return null;
 
   const handleDownload = () => {
-    // Generate a clean text formatted resume download
-    const content = `MICHAEL SMITH\n${RESUME_DETAILS.title}\n${RESUME_DETAILS.location}\nEmail: ${RESUME_DETAILS.email}\n\nSUMMARY\n${RESUME_DETAILS.bio}\n\nEXPERIENCE\n${RESUME_DETAILS.experience.map(e => `${e.role} — ${e.company} (${e.period})\n${e.description}`).join('\n\n')}\n\nSKILLS\n${RESUME_DETAILS.skills.map(s => `${s.category}: ${s.items.join(', ')}`).join('\n')}\n\nAWARDS\n${RESUME_DETAILS.awards.join('\n')}`;
-    
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Michael_Smith_Resume_2026.txt';
+    a.href = RESUME_DETAILS.resumePdfUrl || '/assets/Abdisa_Awel_Tahir_Resume.pdf';
+    a.download = 'Abdisa_Awel_Tahir_Resume.pdf';
+    a.target = '_blank';
     a.click();
-    URL.revokeObjectURL(url);
   };
 
   return (
@@ -52,7 +47,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 Curriculum Vitae
               </span>
               <h2 className="text-2xl md:text-3xl font-light text-text-primary">
-                Michael <span className="font-display italic">Smith</span>
+                Abdisa <span className="font-display italic">Awel</span>
               </h2>
             </div>
 
@@ -62,7 +57,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 className="inline-flex items-center gap-2 text-xs font-mono text-text-primary bg-stroke/60 hover:bg-stroke px-4 py-2 rounded-full border border-stroke transition-colors cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5 text-[#89AACC]" />
-                <span className="hidden sm:inline">Download CV</span>
+                <span className="hidden sm:inline">Download PDF</span>
               </button>
               <button
                 onClick={onClose}
@@ -83,7 +78,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 <span>{RESUME_DETAILS.location}</span>
               </div>
               <a
-                href="mailto:hello@michaelsmith.com"
+                href={`mailto:${RESUME_DETAILS.email}`}
                 className="flex items-center gap-2 text-xs font-mono text-text-primary hover:text-[#89AACC] transition-colors"
               >
                 <Mail className="w-4 h-4 text-[#89AACC]" />

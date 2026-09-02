@@ -128,6 +128,34 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 ))}
               </div>
             </div>
+
+            {/* Project Links / CTAs */}
+            {(project.demo || project.github) && (
+              <div className="pt-4 border-t border-stroke flex items-center gap-4 flex-wrap">
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-xs font-semibold hover:scale-105 transition-transform duration-300"
+                  >
+                    <span>Launch Live Demo</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-surface hover:bg-stroke text-text-primary border border-stroke px-6 py-3 rounded-full text-xs font-mono transition-colors"
+                  >
+                    <span>View Repository</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

@@ -6,10 +6,10 @@ import { Copy, Check, ArrowUpRight, Mail } from 'lucide-react';
 const HLS_STREAM_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 
 const SOCIAL_LINKS = [
-  { name: 'Twitter', url: 'https://twitter.com' },
-  { name: 'LinkedIn', url: 'https://linkedin.com' },
-  { name: 'Dribbble', url: 'https://dribbble.com' },
-  { name: 'GitHub', url: 'https://github.com' },
+  { name: 'GitHub', url: 'https://github.com/abdisa38' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/abdisa-awel-92b963383/' },
+  { name: 'Telegram', url: 'https://t.me/bdisa38' },
+  { name: 'Email', url: 'mailto:abdisaawel82@gmail.com' },
 ];
 
 export const ContactFooter: React.FC = () => {
@@ -66,12 +66,12 @@ export const ContactFooter: React.FC = () => {
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigator.clipboard.writeText('hello@michaelsmith.com');
+    navigator.clipboard.writeText('abdisaawel82@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const marqueeText = Array(10).fill('BUILDING THE FUTURE • ').join('');
+  const marqueeText = Array(10).fill('BUILDING SERIOUS SOFTWARE • SCALING AI SYSTEMS • ').join('');
 
   return (
     <footer
@@ -110,21 +110,21 @@ export const ContactFooter: React.FC = () => {
         </h2>
 
         <p className="text-sm md:text-base text-muted max-w-md mb-10 leading-relaxed">
-          Open for principal engineering leadership, design advisory, and high-impact digital ventures.
+          Open for full-stack engineering roles, autonomous AI applications, and high-impact digital ventures.
         </p>
 
         {/* CTA Email Button with Gradient Hover Ring */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-20">
           <a
             id="footer-email-button"
-            href="mailto:hello@michaelsmith.com"
+            href="mailto:abdisaawel82@gmail.com"
             className="group relative inline-flex rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105 cursor-pointer shadow-2xl"
           >
             {/* Accent gradient ring */}
             <span className="absolute inset-0 rounded-full accent-gradient opacity-90 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]" />
             <span className="relative z-10 inline-flex items-center gap-3 bg-bg hover:bg-surface rounded-full px-8 py-4 text-sm sm:text-base text-text-primary font-medium transition-colors">
               <Mail className="w-4 h-4 text-[#89AACC]" />
-              <span>hello@michaelsmith.com</span>
+              <span>abdisaawel82@gmail.com</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>
           </a>
@@ -170,7 +170,7 @@ export const ContactFooter: React.FC = () => {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
           </span>
           <span className="text-xs font-mono text-text-primary/90">
-            Available for Q3/Q4 2026 projects
+            Available for new opportunities & roles
           </span>
         </div>
 
@@ -191,7 +191,7 @@ export const ContactFooter: React.FC = () => {
 
         {/* Location & Copyright */}
         <div className="text-xs font-mono text-muted">
-          <span>Chicago, IL &middot; &copy; 2026 Michael Smith</span>
+          <span>Addis Ababa, Ethiopia &middot; &copy; 2026 Abdisa Awel</span>
         </div>
       </div>
     </footer>
