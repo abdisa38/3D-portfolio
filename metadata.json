@@ -1,0 +1,7 @@
+{
+  "name": "Michael Smith - Dark Portfolio",
+  "description": "A high-end dark portfolio landing page with GSAP animations, Framer Motion, and HLS video streaming.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
