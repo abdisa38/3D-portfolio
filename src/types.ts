@@ -10,6 +10,8 @@ export interface Project {
   image: string;
   tags: string[];
   link?: string;
+  demo?: string;
+  github?: string;
   client?: string;
   deliverables?: string[];
 }
