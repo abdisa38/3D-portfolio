@@ -16,7 +16,7 @@ const CONTACT_CHANNELS: ContactChannel[] = [
   {
     name: 'GitHub',
     handle: '@abdisa38',
-    description: '70+ Repositories, open source projects & active commits',
+    description: '90+ Repositories, open source projects & active commits',
     url: 'https://github.com/abdisa38',
     icon: <Github className="w-6 h-6 text-white" />,
     badge: 'Code & Builds',

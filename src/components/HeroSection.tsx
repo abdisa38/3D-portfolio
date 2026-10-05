@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { Download } from 'lucide-react';
 import { ParticleUniverse } from './ParticleUniverse';
 
 interface HeroSectionProps {
@@ -206,21 +207,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span className="relative z-10 text-black group-hover:text-black">See Works</span>
           </button>
 
-          {/* "Reach out..." — Glassmorphism Outlined Button */}
-          <button
-            id="hero-reach-out-button"
-            onClick={onReachOut}
+          {/* "Download Resume" — Glassmorphism Action Button */}
+          <a
+            id="hero-download-resume-button"
+            href="/assets/Abdisa_Awel_Tahir_Resume.pdf"
+            download="Abdisa_Awel_Tahir_Resume.pdf"
             className="group relative p-[1.5px] rounded-full transition-all duration-300 cursor-pointer"
           >
             {/* Animated gradient ring */}
             <div className="absolute inset-0 rounded-full opacity-30 group-hover:opacity-100 transition-opacity duration-500 glass-border-gradient" />
             {/* Inner glass panel */}
-            <div className="relative px-8 sm:px-9 py-[13px] sm:py-[14px] rounded-full text-sm font-semibold text-white backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-transparent group-hover:bg-white/10 transition-all duration-300">
-              <span className="relative z-10">Reach out...</span>
+            <div className="relative px-8 sm:px-9 py-[13px] sm:py-[14px] rounded-full text-sm font-semibold text-white backdrop-blur-md bg-white/5 border border-white/10 group-hover:border-transparent group-hover:bg-white/10 transition-all duration-300 flex items-center gap-2.5">
+              <Download className="w-4 h-4 text-[#89AACC] group-hover:translate-y-0.5 transition-transform duration-300" />
+              <span>Download Resume</span>
             </div>
             {/* Outer glow on hover */}
             <div className="absolute -inset-2 rounded-full bg-[#4E85BF]/0 group-hover:bg-[#4E85BF]/10 blur-xl transition-all duration-500 pointer-events-none" />
-          </button>
+          </a>
         </div>
       </div>
 

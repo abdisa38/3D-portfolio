@@ -44,3 +44,25 @@ export interface StatItem {
   sublabel: string;
   change?: string;
 }
+
+export interface TechCategory {
+  id: string;
+  title: string;
+  iconName: string;
+  dotColor: string;
+  highlighted?: boolean;
+  skills: string[];
+}
+
+export interface CurrentlyDoingItem {
+  id: string;
+  title: string;
+  role: string;
+  status: 'active' | 'scaling' | 'shipping' | 'research';
+  organization: string;
+  description: string;
+  tags: string[];
+  metrics?: string;
+  link?: string;
+}
+

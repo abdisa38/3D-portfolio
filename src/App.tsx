@@ -3,6 +3,8 @@ import { AnimatePresence } from 'motion/react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { AboutSection } from './components/AboutSection';
+import { TechStackSection } from './components/TechStackSection';
 import { SelectedWorks } from './components/SelectedWorks';
 import { JournalSection } from './components/JournalSection';
 import { ExplorationsSection } from './components/ExplorationsSection';
@@ -30,16 +32,28 @@ export default function App() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
+      const aboutSection = document.getElementById('about');
+      const skillsSection = document.getElementById('skills');
       const workSection = document.getElementById('work');
+      const explorationsSection = document.getElementById('explorations');
       const contactSection = document.getElementById('contact');
 
-      const workTop = workSection ? workSection.offsetTop - 200 : 800;
-      const contactTop = contactSection ? contactSection.offsetTop - 300 : 3000;
+      const aboutTop = aboutSection ? aboutSection.offsetTop - 250 : 500;
+      const skillsTop = skillsSection ? skillsSection.offsetTop - 250 : 1100;
+      const workTop = workSection ? workSection.offsetTop - 250 : 2000;
+      const explorationsTop = explorationsSection ? explorationsSection.offsetTop - 250 : 3000;
+      const contactTop = contactSection ? contactSection.offsetTop - 350 : 3800;
 
       if (scrollY >= contactTop) {
         setActiveSection('contact');
+      } else if (scrollY >= explorationsTop) {
+        setActiveSection('explorations');
       } else if (scrollY >= workTop) {
         setActiveSection('work');
+      } else if (scrollY >= skillsTop) {
+        setActiveSection('skills');
+      } else if (scrollY >= aboutTop) {
+        setActiveSection('about');
       } else {
         setActiveSection('home');
       }
@@ -91,34 +105,40 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="relative z-10">
-        {/* Section 2: Hero */}
+        {/* Section 1: Hero */}
         <HeroSection
           isReady={!isLoading}
           onSeeWorks={() => handleNavigate('work')}
           onReachOut={handleOpenContact}
         />
 
-        {/* Section 3: Selected Works */}
+        {/* Section 2: About Me */}
+        <AboutSection />
+
+        {/* Section 3: Technical Arsenal / Tech Stack */}
+        <TechStackSection />
+
+        {/* Section 4: Selected Works */}
         <SelectedWorks
           onSelectProject={(project) => setSelectedProject(project)}
           onViewAllProjects={() => setSelectedProject(PROJECTS[0])}
         />
 
-        {/* Section 4: Journal */}
+        {/* Section 6: Journal */}
         <JournalSection
           onSelectArticle={(article) => setSelectedArticle(article)}
           onViewAllArticles={() => setSelectedArticle(JOURNAL_ENTRIES[0])}
         />
 
-        {/* Section 5: Explorations (Parallax Gallery) */}
+        {/* Section 7: Verified Credentials */}
         <ExplorationsSection
           onSelectExploration={(item) => setSelectedExploration(item)}
         />
 
-        {/* Section 6: Stats */}
+        {/* Section 8: Stats */}
         <StatsSection />
 
-        {/* Section 7: Contact / Footer */}
+        {/* Section 9: Contact / Footer */}
         <ContactFooter />
       </main>
 

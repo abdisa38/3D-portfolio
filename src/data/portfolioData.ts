@@ -1,4 +1,4 @@
-import { Project, JournalEntry, ExplorationItem, StatItem } from '../types';
+import { Project, JournalEntry, ExplorationItem, StatItem, TechCategory } from '../types';
 
 export const PROJECTS: Project[] = [
   {
@@ -191,7 +191,7 @@ export const STATS: StatItem[] = [
     change: 'Continuous Innovation',
   },
   {
-    value: '70+',
+    value: '90+',
     label: 'Repositories',
     sublabel: 'Enterprise apps, microservices & open source',
     change: 'Active GitHub Builder',
@@ -244,3 +244,48 @@ export const RESUME_DETAILS = {
     '2500+ GitHub Production Contributions',
   ],
 };
+
+export const TECH_STACK_CATEGORIES: TechCategory[] = [
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    iconName: 'Laptop',
+    dotColor: '#ef4444',
+    highlighted: false,
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Motion / GSAP', 'HTML5/CSS3'],
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    iconName: 'Settings',
+    dotColor: '#ef4444',
+    highlighted: true,
+    skills: ['Node.js', 'Express', 'REST APIs', 'Python', 'FastAPI', 'JWT / Auth'],
+  },
+  {
+    id: 'database',
+    title: 'Database',
+    iconName: 'Database',
+    dotColor: '#ef4444',
+    highlighted: false,
+    skills: ['MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Mongoose / Prisma'],
+  },
+  {
+    id: 'devops',
+    title: 'DevOps & Tools',
+    iconName: 'Rocket',
+    dotColor: '#ef4444',
+    highlighted: false,
+    skills: ['Docker', 'Git & GitHub', 'CI/CD Pipelines', 'Vercel / Cloud', 'Linux / Bash', 'Postman'],
+  },
+  {
+    id: 'ai-modern',
+    title: 'AI & Modern',
+    iconName: 'Bot',
+    dotColor: '#ef4444',
+    highlighted: false,
+    skills: ['Gemini AI API', 'LLM Prompt Chaining', 'RAG Pipelines', 'Vector Search', 'System Architecture'],
+  },
+];
+
+
