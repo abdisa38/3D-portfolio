@@ -47,6 +47,23 @@ body {
   background-size: 200% 200%;
 }
 
+/* Glassmorphism border gradient for buttons */
+.glass-border-gradient {
+  background: linear-gradient(135deg, #89AACC, #4E85BF, #6BA3D6, #89AACC);
+  background-size: 300% 300%;
+  animation: glass-border-shift 4s ease infinite;
+}
+
+/* Radial gradient overlay for hero text readability */
+.bg-radial-gradient {
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 45%,
+    rgba(10, 10, 10, 0.6) 0%,
+    rgba(10, 10, 10, 0.3) 40%,
+    transparent 70%
+  );
+}
+
 /* Halftone dot pattern overlay */
 .halftone-overlay {
   background-image: radial-gradient(circle, #000 1px, transparent 1px);
@@ -105,6 +122,71 @@ body {
   }
 }
 
+@keyframes glass-border-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating orb animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(8px, -12px);
+  }
+  50% {
+    transform: translate(-4px, -20px);
+  }
+  75% {
+    transform: translate(12px, -8px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-10px, -15px);
+  }
+  66% {
+    transform: translate(6px, -10px);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(5px, -8px);
+  }
+  50% {
+    transform: translate(-8px, -16px);
+  }
+  75% {
+    transform: translate(10px, -6px);
+  }
+}
+
+/* Glow pulse for decorative elements */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(78, 133, 191, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(78, 133, 191, 0.7);
+  }
+}
+
 .animate-scroll-down {
   animation: scroll-down 1.5s ease-in-out infinite;
 }
@@ -115,6 +197,22 @@ body {
 
 .animate-gradient-shift {
   animation: gradient-shift 6s ease infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 /* Custom scrollbar */
@@ -134,4 +232,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted) / 0.5);
 }
-

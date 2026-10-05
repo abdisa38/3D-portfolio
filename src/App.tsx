@@ -12,6 +12,7 @@ import { ResumeModal } from './components/ResumeModal';
 import { ProjectModal } from './components/ProjectModal';
 import { ArticleModal } from './components/ArticleModal';
 import { ExplorationModal } from './components/ExplorationModal';
+import { ImmersiveVideoBackground } from './components/ImmersiveVideoBackground';
 import { Project, JournalEntry, ExplorationItem } from './types';
 import { PROJECTS, JOURNAL_ENTRIES } from './data/portfolioData';
 
@@ -71,6 +72,8 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-bg text-text-primary antialiased font-body overflow-x-hidden selection:bg-[#4E85BF]/30 selection:text-white">
+      {/* Immersive Video Background — Fixed behind everything */}
+      {!isLoading && <ImmersiveVideoBackground />}
       {/* Loading Screen Overlay */}
       <AnimatePresence>
         {isLoading && (

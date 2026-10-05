@@ -4,7 +4,7 @@ import { STATS } from '../data/portfolioData';
 
 export const StatsSection: React.FC = () => {
   return (
-    <section id="stats" className="bg-bg py-16 md:py-24 border-y border-stroke/50 relative">
+    <section id="stats" className="bg-bg/80 backdrop-blur-sm py-16 md:py-24 border-y border-stroke/50 relative">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {STATS.map((stat, index) => {

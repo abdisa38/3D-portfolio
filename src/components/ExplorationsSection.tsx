@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, Sparkles } from 'lucide-react';
+import { ExternalLink, Award, ShieldCheck } from 'lucide-react';
 import { ExplorationItem } from '../types';
 import { EXPLORATIONS } from '../data/portfolioData';
 
@@ -81,7 +81,7 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
     <section
       id="explorations"
       ref={containerRef}
-      className="relative min-h-[260vh] md:min-h-[300vh] bg-bg overflow-hidden"
+      className="relative min-h-[200vh] md:min-h-[230vh] bg-bg/80 backdrop-blur-sm overflow-hidden"
     >
       {/* Layer 1: Pinned Center (z-10) */}
       <div
@@ -91,33 +91,34 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
         <div className="max-w-xl mx-auto flex flex-col items-center">
           {/* Eyebrow */}
           <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+            <Award className="w-4 h-4 text-[#89AACC]" />
             <span className="text-xs text-muted uppercase tracking-[0.3em] font-mono">
-              Explorations
+              Accreditations & Honors
             </span>
           </div>
 
           {/* Heading */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-text-primary mb-4">
-            Visual <span className="font-display italic">playground</span>
+            Verified <span className="font-display italic">credentials</span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-sm md:text-base text-muted max-w-sm mb-8 leading-relaxed">
-            Experiments in computational geometry, generative shaders, and kinetic typography.
+          <p className="text-sm md:text-base text-muted max-w-md mb-8 leading-relaxed">
+            Industry-recognized software certifications, enterprise backend training, and venture incubation distinctions backing production craft.
           </p>
 
-          {/* Dribbble Button (Pointer events active) */}
+          {/* LinkedIn Button (Pointer events active) */}
           <div className="pointer-events-auto">
             <a
-              href="https://dribbble.com"
+              href="https://www.linkedin.com/in/abdisa-awel-92b963383/"
               target="_blank"
               rel="noreferrer"
               className="group relative inline-flex rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105"
             >
               <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]" />
               <span className="relative z-10 inline-flex items-center gap-2 bg-surface/90 backdrop-blur-md rounded-full px-6 py-3 text-xs sm:text-sm text-text-primary border border-white/10 group-hover:border-transparent transition-colors">
-                <span>View on Dribbble</span>
+                <ShieldCheck className="w-4 h-4 text-[#89AACC]" />
+                <span>Verify on LinkedIn</span>
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>
             </a>

@@ -14,7 +14,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({
   onViewAllProjects,
 }) => {
   return (
-    <section id="work" className="bg-bg py-16 md:py-24 relative overflow-hidden">
+    <section id="work" className="bg-bg/80 backdrop-blur-sm py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <motion.div

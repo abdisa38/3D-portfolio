@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Sparkles } from 'lucide-react';
+import { X, Award } from 'lucide-react';
 import { ExplorationItem } from '../types';
 
 interface ExplorationModalProps {
@@ -35,7 +35,7 @@ export const ExplorationModal: React.FC<ExplorationModalProps> = ({ item, onClos
           {/* Top Bar */}
           <div className="p-4 sm:p-6 border-b border-stroke flex items-center justify-between bg-surface/90">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#89AACC]" />
+              <Award className="w-4 h-4 text-[#89AACC]" />
               <span className="text-xs font-mono text-[#89AACC] uppercase tracking-wider">
                 {item.category}
               </span>

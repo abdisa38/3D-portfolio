@@ -1,51 +1,59 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
 import gsap from 'gsap';
-import { Copy, Check, ArrowUpRight, Mail } from 'lucide-react';
+import { Copy, Check, ArrowUpRight, Mail, Github, Linkedin, Send } from 'lucide-react';
 
-const HLS_STREAM_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
+interface ContactChannel {
+  name: string;
+  handle: string;
+  description: string;
+  url: string;
+  icon: React.ReactNode;
+  badge: string;
+  accent: string;
+}
 
-const SOCIAL_LINKS = [
-  { name: 'GitHub', url: 'https://github.com/abdisa38' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/abdisa-awel-92b963383/' },
-  { name: 'Telegram', url: 'https://t.me/bdisa38' },
-  { name: 'Email', url: 'mailto:abdisaawel82@gmail.com' },
+const CONTACT_CHANNELS: ContactChannel[] = [
+  {
+    name: 'GitHub',
+    handle: '@abdisa38',
+    description: '70+ Repositories, open source projects & active commits',
+    url: 'https://github.com/abdisa38',
+    icon: <Github className="w-6 h-6 text-white" />,
+    badge: 'Code & Builds',
+    accent: 'from-gray-500/20 to-slate-800/20',
+  },
+  {
+    name: 'LinkedIn',
+    handle: 'in/abdisa-awel',
+    description: 'Professional experience, leadership roles & recommendations',
+    url: 'https://www.linkedin.com/in/abdisa-awel-92b963383/',
+    icon: <Linkedin className="w-6 h-6 text-[#89AACC]" />,
+    badge: 'Network',
+    accent: 'from-[#4E85BF]/20 to-[#89AACC]/10',
+  },
+  {
+    name: 'Telegram',
+    handle: '@bdisa38',
+    description: 'Direct instant messaging for quick chats & collaborations',
+    url: 'https://t.me/bdisa38',
+    icon: <Send className="w-6 h-6 text-[#6BA3D6]" />,
+    badge: 'Instant Chat',
+    accent: 'from-[#6BA3D6]/20 to-[#4E85BF]/10',
+  },
+  {
+    name: 'Email',
+    handle: 'abdisaawel82@gmail.com',
+    description: 'Formal inquiries, technical roles & project proposals',
+    url: 'mailto:abdisaawel82@gmail.com',
+    icon: <Mail className="w-6 h-6 text-[#89AACC]" />,
+    badge: 'Direct Mail',
+    accent: 'from-[#89AACC]/20 to-[#4E85BF]/15',
+  },
 ];
 
 export const ContactFooter: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
-
-  // Initialize flipped HLS Video
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let hls: Hls | null = null;
-
-    if (Hls.isSupported()) {
-      hls = new Hls({
-        autoStartLoad: true,
-        startLevel: -1,
-        capLevelToPlayerSize: true,
-      });
-      hls.loadSource(HLS_STREAM_URL);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = HLS_STREAM_URL;
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(() => {});
-      });
-    }
-
-    return () => {
-      if (hls) hls.destroy();
-    };
-  }, []);
 
   // GSAP Infinite Continuous Marquee
   useEffect(() => {
@@ -54,7 +62,7 @@ export const ContactFooter: React.FC = () => {
 
     const tween = gsap.to(marqueeTrack, {
       xPercent: -50,
-      duration: 40,
+      duration: 35,
       ease: 'none',
       repeat: -1,
     });
@@ -71,60 +79,62 @@ export const ContactFooter: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const marqueeText = Array(10).fill('BUILDING SERIOUS SOFTWARE • SCALING AI SYSTEMS • ').join('');
+  const marqueeText = Array(8).fill('FULL-STACK ENGINEERING • MODERN INTERFACES • ENTERPRISE ARCHITECTURES • CLEAN CODE • ').join('');
 
   return (
     <footer
       id="contact"
-      className="relative bg-bg pt-16 md:pt-24 pb-8 md:pb-12 overflow-hidden border-t border-stroke/40"
+      className="relative bg-bg/75 backdrop-blur-md pt-20 md:pt-28 pb-10 md:pb-14 overflow-hidden border-t border-stroke/40"
     >
-      {/* Background Flipped Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-40"
-          aria-hidden="true"
-        />
-        {/* Heavier overlay (bg-black/60) */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        {/* Top gradient fade */}
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-bg to-transparent" />
-      </div>
+      {/* Ambient background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-radial-gradient pointer-events-none opacity-60" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(78,133,191,0.12)_0%,_transparent_70%)] pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center">
-        {/* Eyebrow */}
-        <div className="flex items-center gap-2 mb-6">
-          <span className="w-2 h-2 rounded-full bg-[#89AACC] animate-pulse" />
-          <span className="text-xs text-muted uppercase tracking-[0.3em] font-mono">
-            Initiate Contact
+      <div className="relative z-10 max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center">
+        {/* Availability Badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-surface/80 border border-white/10 backdrop-blur-md mb-8">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+          </span>
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-muted">
+            Available For Opportunities
           </span>
         </div>
 
         {/* Big Headline */}
-        <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-text-primary mb-6 max-w-3xl">
-          Let&apos;s build the <span className="font-display italic">extraordinary</span>.
+        <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-text-primary mb-6 max-w-4xl leading-[1.05]">
+          Let&apos;s build something <br className="hidden sm:inline" />
+          <span
+            className="font-display italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl"
+            style={{
+              background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 60%, #89AACC 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            extraordinary together.
+          </span>
         </h2>
 
-        <p className="text-sm md:text-base text-muted max-w-md mb-10 leading-relaxed">
-          Open for full-stack engineering roles, autonomous AI applications, and high-impact digital ventures.
+        {/* Subtitle */}
+        <p className="text-sm md:text-base text-muted max-w-xl mb-10 md:mb-12 leading-relaxed">
+          Currently open for full-stack engineering roles, scalable web applications, and high-impact digital ventures. Whether you have a project idea, a position to fill, or just want to say hi — I&apos;ll get back to you!
         </p>
 
-        {/* CTA Email Button with Gradient Hover Ring */}
+        {/* Primary Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 sm:mb-20">
+          {/* Main "Say Hello" button */}
           <a
             id="footer-email-button"
             href="mailto:abdisaawel82@gmail.com"
             className="group relative inline-flex rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105 cursor-pointer shadow-2xl"
           >
-            {/* Accent gradient ring */}
             <span className="absolute inset-0 rounded-full accent-gradient opacity-90 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]" />
-            <span className="relative z-10 inline-flex items-center gap-3 bg-bg hover:bg-surface rounded-full px-8 py-4 text-sm sm:text-base text-text-primary font-medium transition-colors">
-              <Mail className="w-4 h-4 text-[#89AACC]" />
-              <span>abdisaawel82@gmail.com</span>
+            <span className="relative z-10 inline-flex items-center gap-3 bg-white text-black hover:bg-white/95 rounded-full px-8 sm:px-10 py-4 text-sm sm:text-base font-semibold transition-all">
+              <Mail className="w-4 h-4 text-[#4E85BF]" />
+              <span>Say Hello</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </span>
           </a>
@@ -132,26 +142,78 @@ export const ContactFooter: React.FC = () => {
           {/* Quick Copy Action */}
           <button
             onClick={handleCopyEmail}
-            className="inline-flex items-center gap-2 text-xs font-mono text-muted hover:text-text-primary bg-surface/50 border border-stroke rounded-full px-4 py-3 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2.5 text-xs sm:text-sm font-mono text-muted hover:text-text-primary bg-surface/70 hover:bg-surface border border-white/10 rounded-full px-5 py-3.5 transition-all cursor-pointer backdrop-blur-sm"
             title="Copy email to clipboard"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-emerald-400">Copied to clipboard</span>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400 font-medium">Copied: abdisaawel82@gmail.com</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Copy email</span>
+                <Copy className="w-4 h-4" />
+                <span>Copy email address</span>
               </>
             )}
           </button>
         </div>
+
+        {/* 4-Card Interactive Social & Contact Channels Grid */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
+          {CONTACT_CHANNELS.map((channel) => (
+            <a
+              key={channel.name}
+              href={channel.url}
+              target={channel.url.startsWith('mailto:') ? '_self' : '_blank'}
+              rel="noreferrer"
+              className="group relative text-left rounded-3xl p-6 sm:p-7 bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl overflow-hidden flex flex-col justify-between"
+            >
+              {/* Subtle hover gradient background */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${channel.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+              />
+
+              <div>
+                {/* Header with icon and badge */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    {channel.icon}
+                  </div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-muted bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
+                    {channel.badge}
+                  </span>
+                </div>
+
+                {/* Channel Name */}
+                <h3 className="text-lg font-medium text-text-primary mb-1 flex items-center justify-between">
+                  <span>{channel.name}</span>
+                  <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </h3>
+
+                {/* Handle */}
+                <p className="text-xs font-mono text-[#89AACC] mb-3">
+                  {channel.handle}
+                </p>
+
+                {/* Description */}
+                <p className="text-xs text-muted leading-relaxed">
+                  {channel.description}
+                </p>
+              </div>
+
+              {/* Bottom connect prompt */}
+              <div className="pt-5 mt-5 border-t border-white/5 flex items-center gap-1.5 text-xs text-muted group-hover:text-text-primary font-medium transition-colors">
+                <span>Open {channel.name}</span>
+                <span className="text-[11px] font-mono">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* GSAP Continuous Marquee Banner */}
-      <div className="relative z-10 w-full overflow-hidden py-4 my-8 border-y border-stroke/40 bg-surface/30 backdrop-blur-sm select-none">
+      <div className="relative z-10 w-full overflow-hidden py-4 my-6 border-y border-stroke/40 bg-surface/30 backdrop-blur-sm select-none">
         <div
           ref={marqueeRef}
           className="flex whitespace-nowrap will-change-transform text-xs sm:text-sm font-mono tracking-[0.3em] uppercase text-muted/60"
@@ -162,36 +224,31 @@ export const ContactFooter: React.FC = () => {
       </div>
 
       {/* Footer Bottom Bar */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Availability indicator */}
-        <div className="flex items-center gap-2.5">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-          </span>
-          <span className="text-xs font-mono text-text-primary/90">
-            Available for new opportunities & roles
-          </span>
+      <div className="relative z-10 max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        {/* Availability location */}
+        <div className="flex items-center gap-2 text-xs font-mono text-muted">
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
+          <span>Addis Ababa, Ethiopia &middot; Open to Worldwide Remote & Relocation</span>
         </div>
 
-        {/* Social Links */}
-        <div className="flex items-center gap-6">
-          {SOCIAL_LINKS.map((link) => (
+        {/* Quick Social links */}
+        <div className="flex items-center gap-5 sm:gap-6 flex-wrap justify-center">
+          {CONTACT_CHANNELS.map((link) => (
             <a
               key={link.name}
               href={link.url}
-              target="_blank"
+              target={link.url.startsWith('mailto:') ? '_self' : '_blank'}
               rel="noreferrer"
-              className="text-xs font-mono text-muted hover:text-text-primary transition-colors tracking-wider"
+              className="text-xs font-mono text-muted hover:text-white transition-colors"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Location & Copyright */}
-        <div className="text-xs font-mono text-muted">
-          <span>Addis Ababa, Ethiopia &middot; &copy; 2026 Abdisa Awel</span>
+        {/* Copyright */}
+        <div className="text-xs font-mono text-muted/70">
+          <span>&copy; 2026 Abdisa Awel Tahir. Crafted with care.</span>
         </div>
       </div>
     </footer>

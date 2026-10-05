@@ -14,7 +14,7 @@ export const JournalSection: React.FC<JournalSectionProps> = ({
   onViewAllArticles,
 }) => {
   return (
-    <section id="journal" className="bg-bg py-16 md:py-24 relative">
+    <section id="journal" className="bg-bg/80 backdrop-blur-sm py-16 md:py-24 relative">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <motion.div
