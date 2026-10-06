@@ -54,15 +54,3 @@ export interface TechCategory {
   skills: string[];
 }
 
-export interface CurrentlyDoingItem {
-  id: string;
-  title: string;
-  role: string;
-  status: 'active' | 'scaling' | 'shipping' | 'research';
-  organization: string;
-  description: string;
-  tags: string[];
-  metrics?: string;
-  link?: string;
-}
-

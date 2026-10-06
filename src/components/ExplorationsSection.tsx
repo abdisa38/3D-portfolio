@@ -58,11 +58,11 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
 
           {/* Central 3D Verification Badge */}
           <div className="mt-6 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface/80 border border-[#4E85BF]/30 shadow-lg shadow-[#4E85BF]/10">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            {/* <ShieldCheck className="w-4 h-4 text-emerald-400" /> */}
             <span className="text-xs font-mono text-white/90 tracking-wide">
               Official Certificates &bull; 100% Verified
             </span>
-            <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+            {/* <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" /> */}
           </div>
         </motion.div>
 
@@ -103,10 +103,10 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
                   {/* Verified chip */}
-                  <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-md">
+                  {/* <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-md">
                     <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                     <span className="text-[10px] font-mono text-white/90">Verified</span>
-                  </div>
+                  </div> */}
 
                   {/* View indicator */}
                   <div className="absolute bottom-2.5 right-2.5 w-7 h-7 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
