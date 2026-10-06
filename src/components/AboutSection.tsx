@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Briefcase, GraduationCap, Sparkles, Terminal, Server, Users, Brain, CheckCircle2, Award } from 'lucide-react';
 
@@ -171,7 +171,7 @@ export const AboutSection: React.FC = () => {
                 {/* Live Status Badge */}
                 <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
                   {/* <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> */}
-                  <span className="text-[11px] font-mono text-white/90">Available for Opportunities</span>
+                  {/* <span className="text-[11px] font-mono text-white/90">Available for Opportunities</span> */}
                 </div>
 
                 {/* Profile info on card bottom */}
