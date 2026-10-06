@@ -188,19 +188,19 @@ export const STATS: StatItem[] = [
     value: '2+',
     label: 'Years Experience',
     sublabel: 'Full-Stack & Software Engineering',
-    change: 'Continuous Innovation',
+    // change: 'Continuous Innovation',
   },
   {
     value: '90+',
     label: 'Repositories',
     sublabel: 'Enterprise apps, microservices & open source',
-    change: 'Active GitHub Builder',
+    // change: 'Active GitHub Builder',
   },
   {
     value: '2500+',
     label: 'Contributions',
     sublabel: 'Consistent commits across production codebases',
-    change: 'High-Impact Shipping',
+    // change: 'High-Impact Shipping',
   },
 ];
 

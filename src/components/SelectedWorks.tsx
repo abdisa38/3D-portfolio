@@ -93,16 +93,16 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/20 to-transparent pointer-events-none" />
 
                 {/* Persistent Card Meta info (bottom left) */}
-                <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
-                  <div>
-                    <span className="text-[11px] font-mono text-muted uppercase tracking-wider block mb-1">
+                <div className="absolute bottom-5 sm:bottom-6 left-5 sm:left-6 right-5 sm:right-6 flex justify-between items-end z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+                  <div className="max-w-[75%]">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-muted uppercase tracking-wider block mb-1 truncate">
                       {project.category}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-light text-text-primary">
+                    <h3 className="text-lg sm:text-2xl font-light text-text-primary leading-tight">
                       {project.title}
                     </h3>
                   </div>
-                  <span className="text-xs font-mono text-muted border border-stroke px-2.5 py-1 rounded-full bg-surface/80 backdrop-blur-sm">
+                  <span className="text-[11px] sm:text-xs font-mono text-muted border border-stroke px-2.5 py-1 rounded-full bg-surface/80 backdrop-blur-sm shrink-0">
                     {project.year}
                   </span>
                 </div>
@@ -122,7 +122,7 @@ export const SelectedWorks: React.FC<SelectedWorksProps> = ({
                   <div className="relative group/pill p-[1.5px] rounded-full animate-gradient-shift">
                     <span className="absolute inset-0 rounded-full accent-border-gradient animate-gradient-shift" />
                     <span className="relative z-10 inline-flex items-center gap-2 bg-text-primary text-bg px-5 py-2 rounded-full font-medium text-xs sm:text-sm shadow-md">
-                      <span>View —</span>
+                      <span>View &mdash;</span>
                       <span className="font-display italic text-sm sm:text-base font-normal">
                         {project.title}
                       </span>

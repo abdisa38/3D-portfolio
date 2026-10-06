@@ -101,10 +101,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Vertical divider */}
-        <div className="hidden md:block w-px h-4 bg-white/10 mx-1" />
+        <div className="hidden lg:block w-px h-4 bg-white/10 mx-1" />
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
             const isActive = item.action === 'navigate' && activeSection === item.id;
 
@@ -148,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           id="nav-mobile-menu-toggle"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-muted hover:text-white transition-colors cursor-pointer ml-0.5"
+          className="lg:hidden w-8 h-8 rounded-full flex items-center justify-center text-muted hover:text-white transition-colors cursor-pointer ml-0.5"
           aria-label="Toggle mobile menu"
         >
           {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -157,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Menu Dropdown Card */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed top-20 left-4 right-4 bg-surface/95 border border-white/15 rounded-3xl p-4 shadow-2xl backdrop-blur-2xl pointer-events-auto flex flex-col gap-2 z-50 animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-80 bg-surface/95 border border-white/15 rounded-3xl p-4 shadow-2xl backdrop-blur-2xl pointer-events-auto flex flex-col gap-2 z-50 animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="flex items-center justify-between px-3 py-2 border-b border-white/5 mb-1">
             <span className="text-[11px] font-mono text-muted uppercase tracking-widest">
               Navigation
@@ -172,7 +172,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="text-left px-4 py-2.5 rounded-2xl text-sm font-medium text-text-primary hover:bg-white/5 transition-colors flex items-center justify-between"
             >
               <span>{item.label}</span>
-              <span className="text-xs font-mono text-muted">→</span>
+              <span className="text-xs font-mono text-muted">&rarr;</span>
             </button>
           ))}
 

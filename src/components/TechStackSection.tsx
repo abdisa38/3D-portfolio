@@ -1,6 +1,6 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Laptop, Settings, Database, Rocket, Bot, Cpu, Sparkles, CheckCircle2, Terminal } from 'lucide-react';
+import { Laptop, Settings, Database, Rocket, Brain, Cpu, CheckCircle2, Terminal } from 'lucide-react';
 import { TECH_STACK_CATEGORIES } from '../data/portfolioData';
 
 interface CategoryTheme {
@@ -117,8 +117,8 @@ export const TechStackSection: React.FC = () => {
       case 'ai-modern':
         return (
           <div className="relative">
-            <Bot className="w-8 h-8 text-white/95 group-hover:scale-110 group-hover:text-purple-400 transition-all duration-300" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+            <Brain className="w-8 h-8 text-white/95 group-hover:scale-110 group-hover:text-purple-400 transition-all duration-300" />
+            <span className="absolute -top-1 -right-2 w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
           </div>
         );
       default:
@@ -192,7 +192,7 @@ export const TechStackSection: React.FC = () => {
                     ? '0 10px 30px -10px rgba(244, 63, 94, 0.25)'
                     : '0 4px 20px rgba(0, 0, 0, 0.4)',
                 }}
-                className={`group relative rounded-3xl p-7 md:p-8 bg-surface/60 hover:bg-surface/90 border transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default select-none ${
+                className={`group relative rounded-3xl p-6 sm:p-7 md:p-8 bg-surface/60 hover:bg-surface/90 border transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-default select-none max-w-md md:max-w-none w-full mx-auto ${
                   isHighlighted
                     ? 'border-rose-500/50 hover:border-rose-500'
                     : 'border-white/10 hover:border-white/30'

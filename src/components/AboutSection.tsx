@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Briefcase, GraduationCap, Sparkles, Terminal, Server, Users, Bot, CheckCircle2, Award } from 'lucide-react';
+import { MapPin, Briefcase, GraduationCap, Sparkles, Terminal, Server, Users, Brain, CheckCircle2, Award } from 'lucide-react';
 
 interface CareerStep {
   id: string;
@@ -29,7 +29,7 @@ const CAREER_STEPS: CareerStep[] = [
   },
   {
     id: 'step-2',
-    period: '2025 · 3 Months',
+    period: '2025 - 3 Months',
     role: 'Backend Engineering Intern',
     organization: 'Kuraz Technologies',
     description:
@@ -60,7 +60,7 @@ const CAREER_STEPS: CareerStep[] = [
       'Advanced into specialized AI Engineering via ScrimbaAI Engineer program. Actively architecting large scale intelligent systems, LLM powered autonomous agents, vector search pipelines, and cutting edge software.',
     accent: '#a855f7',
     glow: 'rgba(168, 85, 247, 0.25)',
-    icon: <Bot className="w-5 h-5 text-purple-400" />,
+    icon: <Brain className="w-5 h-5 text-purple-400" />,
     tags: [],
   },
 ];
@@ -132,7 +132,7 @@ export const AboutSection: React.FC = () => {
         {/* 2-Column Balanced Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Profile Card & Quick Context (lg:col-span-5) */}
-          <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28">
+          <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28 max-w-md mx-auto w-full lg:max-w-none">
             {/* Portrait Frame Card with 3D Tilt */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}

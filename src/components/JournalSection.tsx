@@ -118,6 +118,21 @@ export const JournalSection: React.FC<JournalSectionProps> = ({
             );
           })}
         </div>
+
+        {/* Mobile View All Button */}
+        <div className="mt-8 flex justify-center md:hidden">
+          <button
+            id="mobile-view-all-journal"
+            onClick={onViewAllArticles}
+            className="w-full relative group rounded-full p-[1.5px] cursor-pointer"
+          >
+            <span className="absolute inset-0 rounded-full accent-gradient opacity-80" />
+            <span className="relative z-10 flex items-center justify-center gap-2 bg-surface rounded-full px-6 py-3 text-sm text-text-primary">
+              <span>View all essays</span>
+              <ArrowRight className="w-4 h-4" />
+            </span>
+          </button>
+        </div>
       </div>
     </section>
   );

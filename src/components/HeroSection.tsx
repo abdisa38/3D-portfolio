@@ -157,7 +157,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           ref={nameRef}
           onMouseMove={handleNameMouseMove}
           onMouseLeave={handleNameMouseLeave}
-          className="name-reveal text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.85] tracking-tight text-white mb-6 md:mb-8 selection:bg-white/10 cursor-default transition-transform duration-200 ease-out"
+          className="name-reveal text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] sm:leading-[0.85] tracking-tight text-white mb-6 md:mb-8 selection:bg-white/10 cursor-default transition-transform duration-200 ease-out text-center break-words max-w-full px-2"
           style={{
             transform: `perspective(1000px) rotateX(${nameTilt.x}deg) rotateY(${nameTilt.y}deg)`,
             textShadow: '0 0 80px rgba(78, 133, 191, 0.15)',
@@ -167,8 +167,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </h1>
 
         {/* Role line */}
-        <div className="blur-in flex flex-col items-center gap-4 mb-10 md:mb-14">
-          <p className="text-lg sm:text-xl md:text-2xl text-white font-light flex items-center justify-center gap-2 flex-wrap">
+        <div className="blur-in flex flex-col items-center gap-4 mb-10 md:mb-14 px-2">
+          <p className="text-base sm:text-xl md:text-2xl text-white font-light flex items-center justify-center gap-2 flex-wrap text-center">
             <span>A</span>
             <span
               key={roleIndex}

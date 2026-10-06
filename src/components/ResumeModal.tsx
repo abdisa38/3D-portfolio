@@ -41,12 +41,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           className="relative z-10 w-full max-w-3xl max-h-[90vh] bg-surface border border-stroke rounded-3xl shadow-2xl overflow-hidden flex flex-col"
         >
           {/* Top Bar */}
-          <div className="p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/80 backdrop-blur-sm sticky top-0 z-20">
+          <div className="p-4 sm:p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/80 backdrop-blur-sm sticky top-0 z-20">
             <div>
               <span className="text-[11px] font-mono text-muted uppercase tracking-[0.2em] block mb-1">
                 Curriculum Vitae
               </span>
-              <h2 className="text-2xl md:text-3xl font-light text-text-primary">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-text-primary">
                 Abdisa <span className="font-display italic">Awel</span>
               </h2>
             </div>
@@ -70,7 +70,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
 
           {/* Scrollable Body */}
-          <div className="p-6 md:p-8 overflow-y-auto space-y-8 text-sm">
+          <div className="p-4 sm:p-6 md:p-8 overflow-y-auto space-y-6 sm:space-y-8 text-sm">
             {/* Bio & Location Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-bg border border-stroke">
               <div className="flex items-center gap-2 text-xs font-mono text-muted">

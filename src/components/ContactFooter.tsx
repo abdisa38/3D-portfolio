@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Copy, Check, ArrowUpRight, Mail, Github, Linkedin, Send } from 'lucide-react';
 
@@ -10,6 +10,8 @@ interface ContactChannel {
   icon: React.ReactNode;
   badge: string;
   accent: string;
+  glow: string;
+  hoverBorder: string;
 }
 
 const CONTACT_CHANNELS: ContactChannel[] = [
@@ -18,42 +20,53 @@ const CONTACT_CHANNELS: ContactChannel[] = [
     handle: '@abdisa38',
     description: '90+ Repositories, open source projects & active commits',
     url: 'https://github.com/abdisa38',
-    icon: <Github className="w-6 h-6 text-white" />,
+    icon: <Github className="w-6 h-6 text-white group-hover:scale-110 group-hover:text-white transition-all duration-300" />,
     badge: 'Code & Builds',
-    accent: 'from-gray-500/20 to-slate-800/20',
+    accent: '#ffffff',
+    glow: 'rgba(255, 255, 255, 0.22)',
+    hoverBorder: 'hover:border-white/50',
   },
   {
     name: 'LinkedIn',
     handle: 'in/abdisa-awel',
     description: 'Professional experience, leadership roles & recommendations',
     url: 'https://www.linkedin.com/in/abdisa-awel-92b963383/',
-    icon: <Linkedin className="w-6 h-6 text-[#89AACC]" />,
+    icon: <Linkedin className="w-6 h-6 text-[#89AACC] group-hover:scale-110 group-hover:text-[#38bdf8] transition-all duration-300" />,
     badge: 'Network',
-    accent: 'from-[#4E85BF]/20 to-[#89AACC]/10',
+    accent: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.3)',
+    hoverBorder: 'hover:border-sky-500/50',
   },
   {
     name: 'Telegram',
     handle: '@bdisa38',
     description: 'Direct instant messaging for quick chats & collaborations',
     url: 'https://t.me/bdisa38',
-    icon: <Send className="w-6 h-6 text-[#6BA3D6]" />,
+    icon: <Send className="w-6 h-6 text-[#6BA3D6] group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-400 transition-all duration-300" />,
     badge: 'Instant Chat',
-    accent: 'from-[#6BA3D6]/20 to-[#4E85BF]/10',
+    accent: '#22d3ee',
+    glow: 'rgba(34, 211, 238, 0.3)',
+    hoverBorder: 'hover:border-cyan-500/50',
   },
   {
     name: 'Email',
     handle: 'abdisaawel82@gmail.com',
     description: 'Formal inquiries, technical roles & project proposals',
     url: 'mailto:abdisaawel82@gmail.com',
-    icon: <Mail className="w-6 h-6 text-[#89AACC]" />,
+    icon: <Mail className="w-6 h-6 text-rose-400 group-hover:scale-110 group-hover:text-rose-300 transition-all duration-300" />,
     badge: 'Direct Mail',
-    accent: 'from-[#89AACC]/20 to-[#4E85BF]/15',
+    accent: '#f43f5e',
+    glow: 'rgba(244, 63, 94, 0.3)',
+    hoverBorder: 'hover:border-rose-500/50',
   },
 ];
 
 export const ContactFooter: React.FC = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
+  const [tiltMap, setTiltMap] = useState<Record<string, { x: number; y: number }>>({});
+  const [spotlightMap, setSpotlightMap] = useState<Record<string, { x: number; y: number }>>({});
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   // GSAP Infinite Continuous Marquee
   useEffect(() => {
@@ -77,6 +90,30 @@ export const ContactFooter: React.FC = () => {
     navigator.clipboard.writeText('abdisaawel82@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleMouseMove = (name: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const tiltX = ((y / rect.height) - 0.5) * -16;
+    const tiltY = ((x / rect.width) - 0.5) * 16;
+
+    setTiltMap((prev) => ({ ...prev, [name]: { x: tiltX, y: tiltY } }));
+    setSpotlightMap((prev) => ({
+      ...prev,
+      [name]: { x: (x / rect.width) * 100, y: (y / rect.height) * 100 },
+    }));
+  };
+
+  const handleMouseEnter = (name: string) => {
+    setHoveredCard(name);
+  };
+
+  const handleMouseLeave = (name: string) => {
+    setHoveredCard(null);
+    setTiltMap((prev) => ({ ...prev, [name]: { x: 0, y: 0 } }));
   };
 
   const marqueeText = Array(8).fill('FULL-STACK ENGINEERING • MODERN INTERFACES • ENTERPRISE ARCHITECTURES • CLEAN CODE • ').join('');
@@ -159,56 +196,97 @@ export const ContactFooter: React.FC = () => {
           </button>
         </div>
 
-        {/* 4-Card Interactive Social & Contact Channels Grid */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
-          {CONTACT_CHANNELS.map((channel) => (
-            <a
-              key={channel.name}
-              href={channel.url}
-              target={channel.url.startsWith('mailto:') ? '_self' : '_blank'}
-              rel="noreferrer"
-              className="group relative text-left rounded-3xl p-6 sm:p-7 bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl overflow-hidden flex flex-col justify-between"
-            >
-              {/* Subtle hover gradient background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${channel.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
-              />
+        {/* 4-Card 3D Interactive Social & Contact Channels Grid */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-16">
+          {CONTACT_CHANNELS.map((channel) => {
+            const tilt = tiltMap[channel.name] || { x: 0, y: 0 };
+            const spotlight = spotlightMap[channel.name] || { x: 50, y: 50 };
+            const isHovered = hoveredCard === channel.name;
 
-              <div>
-                {/* Header with icon and badge */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    {channel.icon}
+            return (
+              <a
+                key={channel.name}
+                href={channel.url}
+                target={channel.url.startsWith('mailto:') ? '_self' : '_blank'}
+                rel="noreferrer"
+                onMouseMove={(e) => handleMouseMove(channel.name, e)}
+                onMouseEnter={() => handleMouseEnter(channel.name)}
+                onMouseLeave={() => handleMouseLeave(channel.name)}
+                style={{
+                  transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${
+                    isHovered ? 'scale3d(1.03, 1.03, 1.03)' : 'scale3d(1, 1, 1)'
+                  }`,
+                  transition: isHovered
+                    ? 'transform 0.12s ease-out, box-shadow 0.3s ease'
+                    : 'transform 0.5s ease-out, box-shadow 0.5s ease',
+                  boxShadow: isHovered
+                    ? `0 20px 45px -10px ${channel.glow}, 0 0 25px 0 ${channel.glow}`
+                    : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                }}
+                className={`group relative text-left rounded-3xl p-6 sm:p-7 bg-surface/60 hover:bg-surface/90 border border-white/10 ${channel.hoverBorder} backdrop-blur-md transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer select-none`}
+              >
+                {/* 1. Real-time Cursor Spotlight */}
+                <div
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-3xl"
+                  style={{
+                    background: isHovered
+                      ? `radial-gradient(circle 240px at ${spotlight.x}% ${spotlight.y}%, ${channel.glow} 0%, transparent 75%)`
+                      : 'none',
+                    opacity: isHovered ? 1 : 0,
+                  }}
+                />
+
+                {/* 2. Top-Right Ambient Sheen */}
+                <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-white/[0.04] to-transparent pointer-events-none rounded-tr-3xl" />
+
+                <div className="relative z-10">
+                  {/* Header with icon and badge */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div
+                      className="w-13 h-13 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-all duration-300"
+                      style={{
+                        borderColor: isHovered ? channel.accent : undefined,
+                        boxShadow: isHovered ? `0 0 15px ${channel.glow}` : undefined,
+                      }}
+                    >
+                      {channel.icon}
+                    </div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-muted group-hover:text-white bg-white/[0.04] px-2.5 py-1 rounded-full border border-white/5 transition-colors">
+                      {channel.badge}
+                    </span>
                   </div>
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-muted bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
-                    {channel.badge}
-                  </span>
+
+                  {/* Channel Name */}
+                  <h3 className="text-lg font-medium text-text-primary group-hover:text-white mb-1 flex items-center justify-between transition-colors">
+                    <span>{channel.name}</span>
+                    <ArrowUpRight
+                      className="w-4 h-4 text-muted group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                      style={{ color: isHovered ? channel.accent : undefined }}
+                    />
+                  </h3>
+
+                  {/* Handle */}
+                  <p
+                    className="text-xs font-mono mb-3 transition-colors"
+                    style={{ color: isHovered ? channel.accent : '#89AACC' }}
+                  >
+                    {channel.handle}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-muted/90 group-hover:text-muted leading-relaxed">
+                    {channel.description}
+                  </p>
                 </div>
 
-                {/* Channel Name */}
-                <h3 className="text-lg font-medium text-text-primary mb-1 flex items-center justify-between">
-                  <span>{channel.name}</span>
-                  <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                </h3>
-
-                {/* Handle */}
-                <p className="text-xs font-mono text-[#89AACC] mb-3">
-                  {channel.handle}
-                </p>
-
-                {/* Description */}
-                <p className="text-xs text-muted leading-relaxed">
-                  {channel.description}
-                </p>
-              </div>
-
-              {/* Bottom connect prompt */}
-              <div className="pt-5 mt-5 border-t border-white/5 flex items-center gap-1.5 text-xs text-muted group-hover:text-text-primary font-medium transition-colors">
-                <span>Open {channel.name}</span>
-                <span className="text-[11px] font-mono">→</span>
-              </div>
-            </a>
-          ))}
+                {/* Bottom connect prompt */}
+                <div className="relative z-10 pt-5 mt-5 border-t border-white/[0.06] flex items-center justify-between text-xs text-muted/80 group-hover:text-white font-medium transition-colors">
+                  <span>Open {channel.name}</span>
+                  <span className="text-[11px] font-mono group-hover:translate-x-1 transition-transform">&rarr;</span>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
 
@@ -227,7 +305,7 @@ export const ContactFooter: React.FC = () => {
       <div className="relative z-10 max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         {/* Availability location */}
         <div className="flex items-center gap-2 text-xs font-mono text-muted">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span>Addis Ababa, Ethiopia &middot; Open to Worldwide Remote & Relocation</span>
         </div>
 

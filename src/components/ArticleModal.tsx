@@ -33,7 +33,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ entry, onClose }) =>
           className="relative z-10 w-full max-w-3xl max-h-[90vh] bg-surface border border-stroke rounded-3xl shadow-2xl overflow-hidden flex flex-col"
         >
           {/* Top Bar */}
-          <div className="p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/90 backdrop-blur-sm sticky top-0 z-20">
+          <div className="p-4 sm:p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/90 backdrop-blur-sm sticky top-0 z-20">
             <div className="flex items-center gap-3">
               <span className="text-[11px] font-mono text-[#89AACC] uppercase tracking-[0.2em]">
                 {entry.category}
@@ -42,7 +42,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ entry, onClose }) =>
 
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-full bg-stroke/50 hover:bg-stroke flex items-center justify-center text-muted hover:text-text-primary transition-colors cursor-pointer"
+              className="w-9 h-9 rounded-full bg-stroke/50 hover:bg-stroke flex items-center justify-center text-muted hover:text-text-primary transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -50,8 +50,8 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ entry, onClose }) =>
           </div>
 
           {/* Scrollable Content */}
-          <div className="p-6 md:p-10 overflow-y-auto space-y-6">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-text-primary tracking-tight leading-snug">
+          <div className="p-4 sm:p-6 md:p-10 overflow-y-auto space-y-5 sm:space-y-6">
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-light text-text-primary tracking-tight leading-snug">
               {entry.title}
             </h1>
 

@@ -33,12 +33,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-surface border border-stroke rounded-3xl shadow-2xl overflow-hidden flex flex-col"
         >
           {/* Top Bar */}
-          <div className="p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/90 backdrop-blur-sm sticky top-0 z-20">
+          <div className="p-4 sm:p-6 md:p-8 border-b border-stroke flex items-center justify-between bg-surface/90 backdrop-blur-sm sticky top-0 z-20">
             <div>
-              <span className="text-[11px] font-mono text-muted uppercase tracking-[0.2em] block mb-1">
+              <span className="text-[10px] sm:text-[11px] font-mono text-muted uppercase tracking-[0.2em] block mb-1">
                 {project.category}
               </span>
-              <h2 className="text-2xl md:text-3xl font-light text-text-primary">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-text-primary">
                 {project.title}
               </h2>
             </div>
@@ -53,7 +53,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* Scrollable Body */}
-          <div className="p-6 md:p-8 overflow-y-auto space-y-8">
+          <div className="p-4 sm:p-6 md:p-8 overflow-y-auto space-y-6 sm:space-y-8">
             {/* Hero Image */}
             <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden border border-stroke relative group">
               <img
