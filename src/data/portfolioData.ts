@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
     image: '/assets/zerfelounge.png',
     tags: ['MERN Stack', 'React', 'Tailwind CSS', 'Context API', 'RESTful API'],
     client: 'Zerfe Lounge & Hotel (Bale Robe)',
-    deliverables: ['Gebeta QR Ordering Engine', 'Live Kitchen Admin Dashboar', 'Order Tracking & Guest Feedback'],
+    deliverables: ['Gebeta QR Ordering Engine', 'Live Kitchen Admin Dashboard', 'Order Tracking & Guest Feedback'],
     demo: 'https://zerfelounge.pro.et/#',
     github: '#',
   },
