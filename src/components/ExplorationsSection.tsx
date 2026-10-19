@@ -111,7 +111,7 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
                     ? '0 25px 50px -10px rgba(78, 133, 191, 0.35), 0 0 25px rgba(78, 133, 191, 0.2)'
                     : '0 4px 20px rgba(0, 0, 0, 0.4)',
                 }}
-                className="group relative rounded-3xl bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-[#4E85BF]/70 p-3.5 sm:p-4 shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden select-none max-w-sm sm:max-w-none w-full mx-auto"
+                className="group relative rounded-3xl bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-[#4E85BF]/70 p-3 sm:p-3.5 shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden select-none max-w-sm sm:max-w-none w-full mx-auto"
               >
                 {/* 1. Real-time Cursor Spotlight */}
                 <div
@@ -127,51 +127,50 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
                 {/* 2. Top-Right Ambient Sheen */}
                 <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-white/[0.04] to-transparent pointer-events-none rounded-tr-3xl" />
 
-                {/* 3. Certificate Image Frame with 3D Depth */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-bg border border-white/10 mb-4 group-hover:border-[#4E85BF]/40 transition-colors">
+                {/* 3. Certificate Paper Showcase Frame (Hero of the Card) */}
+                <div className="relative aspect-[16/11] sm:aspect-[1.4/1] rounded-2xl overflow-hidden bg-black/60 border border-white/15 group-hover:border-[#4E85BF]/50 transition-all duration-500 shadow-lg">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                  {/* Clean paper sheen on hover - no heavy dark gradient covering the paper */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.14] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* Holographic light sheen gliding on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.12] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  {/* Verified Credential Badge */}
+                  <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 border border-white/20 backdrop-blur-md shadow-md">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-[10px] font-mono text-white/95 font-medium tracking-wide">Verified</span>
+                  </div>
 
-                  {/* Verified Chip */}
-                  {/* <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-md shadow-lg">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-[10px] font-mono text-white/95 font-medium">Verified</span>
-                  </div> */}
-
-                  {/* Quick Expand Button */}
-                  <div className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-xl">
-                    <ExternalLink className="w-4 h-4 text-white" />
+                  {/* Quick Expand Button on Hover */}
+                  <div className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/25 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-xl">
+                    <ExternalLink className="w-3.5 h-3.5 text-white" />
                   </div>
                 </div>
 
-                {/* Card Content with 3D Parallax feel */}
-                <div className="relative z-10 px-1 pb-1 flex flex-col justify-between flex-grow">
+                {/* Card Content (Refined, high-density metadata) */}
+                <div className="relative z-10 px-1 pt-3 pb-1 flex flex-col justify-between flex-grow">
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#89AACC] group-hover:text-[#4E85BF] transition-colors block mb-1 font-medium">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#89AACC] group-hover:text-[#4E85BF] transition-colors block mb-1 font-medium">
                       {item.category}
                     </span>
-                    <h3 className="text-base font-medium text-text-primary group-hover:text-white transition-colors leading-snug mb-1.5">
+                    <h3 className="text-sm sm:text-base font-medium text-text-primary group-hover:text-white transition-colors leading-snug line-clamp-1 mb-1">
                       {item.title}
                     </h3>
+                    <p className="text-xs text-muted/90 group-hover:text-muted leading-relaxed line-clamp-1">
+                      {item.subtitle}
+                    </p>
                   </div>
 
-                  <p className="text-xs text-muted/90 group-hover:text-muted mt-1 leading-relaxed">
-                    {item.subtitle}
-                  </p>
-
                   {/* Bottom interactive action bar */}
-                  <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-muted/70 group-hover:text-white transition-colors">
-                    <span>View credential</span>
+                  <div className="mt-3 pt-2.5 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-[#89AACC] group-hover:text-white transition-colors">
+                    <span className="flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-[#89AACC]" />
+                      <span>Inspect Credential</span>
+                    </span>
                     <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </div>
                 </div>
