@@ -82,7 +82,7 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
           </div>
         </motion.div>
 
-        {/* 3D Certificate Grid with Award-Winning Animations */}
+        {/* 3D Certificate Grid with Enhanced Certificate Visibility & Height */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {EXPLORATIONS.map((item, index) => {
             const tilt = tiltMap[item.id] || { x: 0, y: 0 };
@@ -92,33 +92,33 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 35 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.55, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
                 onMouseMove={(e) => handleMouseMove(item.id, e)}
                 onMouseEnter={() => handleMouseEnter(item.id)}
                 onMouseLeave={() => handleMouseLeave(item.id)}
                 onClick={() => onSelectExploration(item)}
                 style={{
                   transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${
-                    isHovered ? 'scale3d(1.03, 1.03, 1.03)' : 'scale3d(1, 1, 1)'
+                    isHovered ? 'scale3d(1.025, 1.025, 1.025)' : 'scale3d(1, 1, 1)'
                   }`,
                   transition: isHovered
                     ? 'transform 0.12s ease-out, box-shadow 0.3s ease'
                     : 'transform 0.5s ease-out, box-shadow 0.5s ease',
                   boxShadow: isHovered
-                    ? '0 25px 50px -10px rgba(78, 133, 191, 0.35), 0 0 25px rgba(78, 133, 191, 0.2)'
-                    : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                    ? '0 25px 50px -10px rgba(78, 133, 191, 0.32), 0 0 20px rgba(78, 133, 191, 0.2)'
+                    : '0 6px 24px rgba(0, 0, 0, 0.45)',
                 }}
-                className="group relative rounded-3xl bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-[#4E85BF]/70 p-3.5 sm:p-4 shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden select-none max-w-sm sm:max-w-none w-full mx-auto"
+                className="group relative rounded-3xl bg-surface/60 hover:bg-surface/90 border border-white/10 hover:border-[#4E85BF]/70 p-4 shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden select-none max-w-sm sm:max-w-none w-full mx-auto"
               >
                 {/* 1. Real-time Cursor Spotlight */}
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-3xl"
                   style={{
                     background: isHovered
-                      ? `radial-gradient(circle 240px at ${spotlight.x}% ${spotlight.y}%, rgba(78, 133, 191, 0.22) 0%, transparent 75%)`
+                      ? `radial-gradient(circle 240px at ${spotlight.x}% ${spotlight.y}%, rgba(78, 133, 191, 0.2) 0%, transparent 75%)`
                       : 'none',
                     opacity: isHovered ? 1 : 0,
                   }}
@@ -127,50 +127,50 @@ export const ExplorationsSection: React.FC<ExplorationsSectionProps> = ({
                 {/* 2. Top-Right Ambient Sheen */}
                 <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-white/[0.04] to-transparent pointer-events-none rounded-tr-3xl" />
 
-                {/* 3. Certificate Image Frame with 3D Depth */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-bg border border-white/10 mb-4 group-hover:border-[#4E85BF]/40 transition-colors">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                  />
+                {/* 3. Certificate Paper Frame with Added Height & Full Visibility */}
+                <div className="relative w-full h-56 sm:h-60 md:h-64 rounded-2xl overflow-hidden bg-gradient-to-b from-white/[0.03] to-black/60 border border-white/10 mb-4 p-2 flex items-center justify-center group-hover:border-[#4E85BF]/50 transition-colors">
+                  {/* The Certificate Paper Document (crisp, elevated, fully visible) */}
+                  <div className="relative w-full h-full rounded-xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.8)] border border-white/15 bg-[#0a0d14] flex items-center justify-center">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      className="w-full h-full object-contain transform transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
 
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                    {/* Holographic light sheen gliding on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.12] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  </div>
 
-                  {/* Holographic light sheen gliding on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.12] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                  {/* Verified Chip */}
-                  {/* <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-md shadow-lg">
+                  {/* Verified Chip Badge */}
+                  <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 border border-emerald-500/30 backdrop-blur-md shadow-lg">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-[10px] font-mono text-white/95 font-medium">Verified</span>
-                  </div> */}
+                    <span className="text-[10px] font-mono text-emerald-300 font-medium tracking-wider">VERIFIED</span>
+                  </div>
 
-                  {/* Quick Expand Button */}
-                  <div className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-xl">
-                    <ExternalLink className="w-4 h-4 text-white" />
+                  {/* Hover Inspect Indicator */}
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl group-hover:scale-105">
+                    <span className="text-[10px] font-mono text-white/90">Inspect</span>
+                    <ExternalLink className="w-3 h-3 text-[#89AACC]" />
                   </div>
                 </div>
 
-                {/* Card Content with 3D Parallax feel */}
+                {/* Card Content & Metadata */}
                 <div className="relative z-10 px-1 pb-1 flex flex-col justify-between flex-grow">
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#89AACC] group-hover:text-[#4E85BF] transition-colors block mb-1 font-medium">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#89AACC] group-hover:text-sky-300 transition-colors block mb-1 font-medium">
                       {item.category}
                     </span>
-                    <h3 className="text-base font-medium text-text-primary group-hover:text-white transition-colors leading-snug mb-1.5">
+                    <h3 className="text-base font-medium text-text-primary group-hover:text-white transition-colors leading-snug mb-1">
                       {item.title}
                     </h3>
+                    <p className="text-xs text-muted/80 leading-relaxed line-clamp-1">
+                      {item.subtitle}
+                    </p>
                   </div>
 
-                  <p className="text-xs text-muted/90 group-hover:text-muted mt-1 leading-relaxed">
-                    {item.subtitle}
-                  </p>
-
                   {/* Bottom interactive action bar */}
-                  <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-muted/70 group-hover:text-white transition-colors">
+                  <div className="mt-3.5 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-muted/70 group-hover:text-white transition-colors">
                     <span>View credential</span>
                     <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </div>

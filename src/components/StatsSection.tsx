@@ -1,26 +1,41 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { GitBranch, Flame, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { GitBranch, Flame, Briefcase, TrendingUp, Sparkles, CheckCircle2 } from 'lucide-react';
 import { STATS } from '../data/portfolioData';
 
-const STAT_CONFIG = [
-  // {
-  //   icon: <Sparkles className="w-6 h-6 text-sky-400" />,
-  //   accent: '#38bdf8',
-  //   glow: 'rgba(56, 189, 248, 0.28)',
-  //   tagBg: 'group-hover:bg-sky-500/10 group-hover:text-sky-300 group-hover:border-sky-500/30',
-  // },
+interface StatConfig {
+  tag: string;
+  icon: React.ReactNode;
+  accent: string;
+  glow: string;
+  borderHover: string;
+  badge: string;
+}
+
+const STAT_CONFIGS: StatConfig[] = [
   {
-    icon: <GitBranch className="w-6 h-6 text-[#89AACC]" />,
-    accent: '#4E85BF',
-    glow: 'rgba(78, 133, 191, 0.28)',
-    tagBg: 'group-hover:bg-[#4E85BF]/10 group-hover:text-[#89AACC] group-hover:border-[#4E85BF]/30',
+    tag: 'EXPERIENCE & CRAFT',
+    icon: <Briefcase className="w-4 h-4 text-sky-400" />,
+    accent: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.22)',
+    borderHover: 'hover:border-sky-500/50',
+    badge: 'Production Ready',
   },
   {
-    icon: <Flame className="w-6 h-6 text-rose-400" />,
-    accent: '#f43f5e',
-    glow: 'rgba(244, 63, 94, 0.28)',
-    tagBg: 'group-hover:bg-rose-500/10 group-hover:text-rose-300 group-hover:border-rose-500/30',
+    tag: 'CODEBASE & ARCHITECTURE',
+    icon: <GitBranch className="w-4 h-4 text-[#89AACC]" />,
+    accent: '#4E85BF',
+    glow: 'rgba(78, 133, 191, 0.25)',
+    borderHover: 'hover:border-[#4E85BF]/60',
+    badge: 'Active GitHub',
+  },
+  {
+    tag: 'SHIPPING VELOCITY',
+    icon: <Flame className="w-4 h-4 text-emerald-400" />,
+    accent: '#10b981',
+    glow: 'rgba(16, 185, 129, 0.22)',
+    borderHover: 'hover:border-emerald-500/50',
+    badge: 'High Impact',
   },
 ];
 
@@ -34,8 +49,8 @@ export const StatsSection: React.FC = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const tiltX = ((y / rect.height) - 0.5) * -16;
-    const tiltY = ((x / rect.width) - 0.5) * 16;
+    const tiltX = ((y / rect.height) - 0.5) * -12;
+    const tiltY = ((x / rect.width) - 0.5) * 12;
 
     setTiltMap((prev) => ({ ...prev, [index]: { x: tiltX, y: tiltY } }));
     setSpotlightMap((prev) => ({
@@ -54,126 +69,141 @@ export const StatsSection: React.FC = () => {
   };
 
   return (
-    <section id="stats" className="bg-bg/80 backdrop-blur-sm py-18 md:py-28 border-y border-stroke/50 relative overflow-hidden">
+    <section id="stats" className="bg-bg/85 backdrop-blur-sm py-10 md:py-14 border-y border-stroke/40 relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(circle,_rgba(78,133,191,0.08)_0%,_transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[radial-gradient(circle,_rgba(78,133,191,0.06)_0%,_transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-[1240px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="max-w-[1140px] mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
           {STATS.map((stat, index) => {
             const tilt = tiltMap[index] || { x: 0, y: 0 };
             const spotlight = spotlightMap[index] || { x: 50, y: 50 };
             const isHovered = hoveredCard === index;
-            const config = STAT_CONFIG[index % STAT_CONFIG.length];
+            const config = STAT_CONFIGS[index % STAT_CONFIGS.length];
 
             return (
               <motion.div
                 key={stat.label}
                 id={`stat-card-${index}`}
-                initial={{ opacity: 0, y: 35 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: '-20px' }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 onMouseMove={(e) => handleMouseMove(index, e)}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={() => handleMouseLeave(index)}
                 style={{
                   transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${
-                    isHovered ? 'scale3d(1.03, 1.03, 1.03)' : 'scale3d(1, 1, 1)'
+                    isHovered ? 'scale3d(1.02, 1.02, 1.02)' : 'scale3d(1, 1, 1)'
                   }`,
                   transition: isHovered
-                    ? 'transform 0.12s ease-out, box-shadow 0.3s ease'
-                    : 'transform 0.5s ease-out, box-shadow 0.5s ease',
+                    ? 'transform 0.12s ease-out, box-shadow 0.25s ease'
+                    : 'transform 0.4s ease-out, box-shadow 0.4s ease',
                   boxShadow: isHovered
-                    ? `0 25px 50px -10px ${config.glow}, 0 0 25px 0 ${config.glow}`
-                    : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                    ? `0 16px 32px -8px ${config.glow}, 0 0 16px 0 ${config.glow}`
+                    : '0 4px 16px rgba(0, 0, 0, 0.3)',
                 }}
-                className="group relative flex flex-col justify-between p-6 sm:p-8 md:p-9 rounded-3xl bg-surface/50 hover:bg-surface/85 border border-white/10 hover:border-white/30 backdrop-blur-md transition-all duration-300 overflow-hidden cursor-default select-none max-w-md md:max-w-none w-full mx-auto"
+                className={`group relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-surface/50 hover:bg-surface/85 border border-white/10 ${config.borderHover} backdrop-blur-md transition-all duration-300 overflow-hidden cursor-default select-none`}
               >
                 {/* 1. Real-time Cursor Spotlight */}
                 <div
-                  className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-3xl"
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
                   style={{
                     background: isHovered
-                      ? `radial-gradient(circle 260px at ${spotlight.x}% ${spotlight.y}%, ${config.glow} 0%, transparent 75%)`
+                      ? `radial-gradient(circle 200px at ${spotlight.x}% ${spotlight.y}%, ${config.glow} 0%, transparent 75%)`
                       : 'none',
                     opacity: isHovered ? 1 : 0,
                   }}
                 />
 
-                {/* 2. Top Glowing Neon Accent Line */}
+                {/* 2. Top Glowing Accent Bar */}
                 <div
-                  className="absolute top-0 left-8 right-8 h-[2.5px] rounded-b-full transition-all duration-300"
+                  className="absolute top-0 left-6 right-6 h-[2px] rounded-b-full transition-all duration-300"
                   style={{
                     background: isHovered ? config.accent : 'transparent',
-                    boxShadow: isHovered ? `0 0 14px ${config.accent}` : 'none',
+                    boxShadow: isHovered ? `0 0 10px ${config.accent}` : 'none',
                     opacity: isHovered ? 1 : 0,
                   }}
                 />
 
-                {/* 3. Top-Right Ambient Sheen */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-white/[0.04] to-transparent pointer-events-none rounded-tr-3xl" />
-
                 <div className="relative z-10">
-                  {/* Top Bar with Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div
-                      className="w-13 h-13 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-all duration-300"
-                      style={{
-                        borderColor: isHovered ? config.accent : undefined,
-                        boxShadow: isHovered ? `0 0 15px ${config.glow}` : undefined,
-                      }}
-                    >
-                      {config.icon}
+                  {/* Compact Header: Icon, Tag & Micro-Badge */}
+                  <div className="flex items-center justify-between mb-3.5">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:scale-105"
+                        style={{
+                          borderColor: isHovered ? config.accent : undefined,
+                        }}
+                      >
+                        {config.icon}
+                      </div>
+                      <span className="text-[10px] font-mono tracking-wider text-muted uppercase">
+                        {config.tag}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 opacity-40 group-hover:opacity-100 transition-opacity">
-                      <TrendingUp className="w-4 h-4 text-emerald-400" />
-                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/5 text-[#89AACC]">
+                      {config.badge}
+                    </span>
                   </div>
 
-                  {/* Big Display Stat Value with Vibrant Shadow */}
-                  <div className="mb-4">
+                  {/* Stat Value & Title inline/stacked cleanly */}
+                  <div className="flex items-baseline gap-2.5 mb-1.5">
                     <span
-                      className="text-6xl sm:text-7xl lg:text-8xl font-display italic tracking-tight leading-none text-white block transition-all duration-300 group-hover:translate-x-1"
+                      className="text-3xl sm:text-4xl font-display italic tracking-tight text-white block transition-transform duration-300 group-hover:translate-x-0.5"
                       style={{
-                        textShadow: isHovered ? `0 0 35px ${config.accent}` : undefined,
+                        textShadow: isHovered ? `0 0 20px ${config.accent}` : undefined,
                       }}
                     >
                       {stat.value}
                     </span>
+                    <h3 className="text-sm font-medium text-text-primary group-hover:text-white transition-colors">
+                      {stat.label}
+                    </h3>
                   </div>
 
-                  {/* Stat Label */}
-                  <h3 className="text-xl font-medium text-text-primary group-hover:text-white transition-colors mb-2">
-                    {stat.label}
-                  </h3>
-
-                  {/* Sublabel */}
-                  <p className="text-xs sm:text-sm text-muted/90 group-hover:text-muted leading-relaxed">
+                  {/* Sublabel description */}
+                  <p className="text-xs text-muted/80 leading-relaxed mb-3">
                     {stat.sublabel}
                   </p>
+
+                  {/* Senior Developer Micro-Visual */}
+                  {index === 0 && (
+                    <div className="pt-2 border-t border-white/[0.05] flex items-center justify-between text-[10px] font-mono text-muted/70">
+                      <span className="inline-flex items-center gap-1.5 text-sky-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                        Full-Stack / Systems
+                      </span>
+                      <span>MERN + Cloud</span>
+                    </div>
+                  )}
+
+                  {index === 1 && (
+                    <div className="pt-2 border-t border-white/[0.05] flex items-center justify-between text-[10px] font-mono text-muted/70">
+                      <span className="inline-flex items-center gap-1.5 text-[#89AACC]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC]" />
+                        TypeScript &bull; Node &bull; React
+                      </span>
+                      <span>Verified Repos</span>
+                    </div>
+                  )}
+
+                  {index === 2 && (
+                    <div className="pt-2 border-t border-white/[0.05] flex items-center justify-between text-[10px] font-mono text-muted/70">
+                      <div className="flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-500" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-400" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-500" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-300" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-400" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-500" />
+                        <span className="w-1.5 h-1.5 rounded-sm bg-emerald-400" />
+                      </div>
+                      <span className="text-emerald-400 font-mono">Active Streak</span>
+                    </div>
+                  )}
                 </div>
-
-                {/* Bottom Badge with Micro-Animation */}
-                {stat.change && (
-                  <div className="relative z-10 mt-8 pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                    <span
-                      className={`inline-flex items-center gap-1.5 text-[11px] font-mono px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 transition-all duration-300 ${config.tagBg}`}
-                    >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full animate-pulse"
-                        style={{ backgroundColor: config.accent }}
-                      />
-                      <span>{stat.change}</span>
-                    </span>
-
-                    <ArrowUpRight
-                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style={{ color: isHovered ? config.accent : '#89AACC' }}
-                    />
-                  </div>
-                )}
               </motion.div>
             );
           })}
