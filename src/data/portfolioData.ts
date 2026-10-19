@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'laptop-verification',
-    title: 'Smart Laptop Exit Verification',
+    title: 'Smart Laptop Exit Verification.',
     category: 'Gate Security & Hardware Ownership Platform',
     year: '2025',
     summary: 'Smart campus gate security system verifying laptop serials and ownership credentials.',
