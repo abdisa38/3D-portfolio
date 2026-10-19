@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
     category: 'Smart QR Digital Menu & Hospitality Ordering Platform.',
     year: '2026',
     summary: 'Contactless Gebeta QR table-ordering ecosystem, bilingual digital menu, and real-time kitchen admin dashboard for luxury dining in Bale Robe.',
-    description: 'Architected and deployed an end-to-end contactless QR table-ordering platform and digital menu ecosystem for Bale Robe\'s premier hospitality destination. Built with a custom design system, bilingual Amharic/English catalog search, session-persistent cart management, real-time order tracking, and an integrated restaurant admin dashboard for live kitchen operations.',
+    description: 'Architected and deployed an end-to-end contactless QR table-ordering platform and digital menu ecosystem for Bale Robe\'s premier hospitality destination. Built with a custom design system, bilingual Amharic/English catalog search, session-persistent cart management, real time order tracking, and an integrated restaurant admin dashboard for live kitchen operations.',
     colSpan: 'md:col-span-7',
     aspectRatio: 'aspect-[16/10]',
     image: '/assets/zerfelounge.png',
