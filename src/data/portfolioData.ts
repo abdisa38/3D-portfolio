@@ -68,7 +68,7 @@ export const PROJECTS: Project[] = [
 {
     id: 'zerfe-lounge',
     title: 'Zerfe Lounge & Hotel',
-    category: 'Smart QR Digital Menu & Hospitality Ordering Platform',
+    category: 'Smart QR Digital Menu & Hospitality Ordering Platform.',
     year: '2026',
     summary: 'Contactless Gebeta QR table-ordering ecosystem, bilingual digital menu, and real-time kitchen admin dashboard for luxury dining in Bale Robe.',
     description: 'Architected and deployed an end-to-end contactless QR table-ordering platform and digital menu ecosystem for Bale Robe\'s premier hospitality destination. Built with a custom design system, bilingual Amharic/English catalog search, session-persistent cart management, real-time order tracking, and an integrated restaurant admin dashboard for live kitchen operations.',
